@@ -1,4 +1,4 @@
-Featue: File content or user information editing
+Feature: File content or user information editing
 
 	As a user
 	so that I can change the safety information

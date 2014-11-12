@@ -1,9 +1,12 @@
+#---------------------- EditContent.feature starts from here-------------------
+
 Given(/^I'm a user with write permission$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
+  assert locate('authority#level').value == 1
 end
 
 When(/^I'm on the page displaying an edit frame of a file$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('div.field_with_editor')
 end
 
 Then(/^I should be able to change the content of the file$/) do
@@ -11,250 +14,306 @@ Then(/^I should be able to change the content of the file$/) do
 end
 
 Then(/^I should see a save button, a discard button and a quit button$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button')
+  assert find(:text, 'Save')
+  assert find(:text, 'Cancel')
+  assert find(:text, 'Quit')
 end
 
 When(/^I hit save button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button('Save')
 end
 
 Then(/^I should see the file is temporarily saved$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('File is temporarily saved.')
 end
 
 Then(/^I should see a link containing the email address of an admin$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('href')
+  assert page.has_content?('mailto:')
 end
 
 Then(/^I should be asked to write an email to an administrator$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('Please contact admin for review of change.')
 end
 
 When(/^I hit cancel button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button('Cancel')
 end
 
 Then(/^I should see the modification discarded$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('Modification is cancelled.')
 end
 
 When(/^I hit quit button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button('Quit')
+  visit '/homepage'
 end
 
 Then(/^I should see the file content viewing page$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('/[pdf||document]/')
 end
 
 Given(/^I'm an administrator$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
+  assert locate('authority#level').value == 2
 end
 
 Then(/^I should see the file is saved$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('File is saved.')
 end
 
+#---------------------- HompageDisplay.feature starts from here-------------------
+
 Given(/^I'm a user with read\-only permission$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
+  assert locate('authority#level').value == 0;
 end
 
 When(/^I'm on the homepage$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
 end
 
 Then(/^I should see lists of file links, open buttons$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('div.links')
+  assert page.has_content?('open')
+  assert page.has_content?('page 1')
 end
 
 Then(/^I should see a navigation bar$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button.navigation')
 end
 
 Then(/^I should see a search bar$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('input.search')
+  assert page.has_css?('button.search')
 end
 
 When(/^I hit the link or the open button of a file$/) do
-  pending # express the regexp above with the code you wish you had
+  click_link '/(.*)pdf(.*)/'
+  click_button 'open'
 end
 
 Then(/^I should see a new page displaying the content of the file$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('/[pdf||document]/')
 end
 
 When(/^I hit the buttons on the navigation bar$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
+  click_button ('next page')
 end
 
 Then(/^I should see different parts of the whole list of file$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('page 1')
 end
 
 When(/^I hit search and enter something$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
+  fill_in('document', :with => 'document1')
+  click_button 'search'
 end
 
 Then(/^I should see relative results on the page$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('result')
+  assert page.has_css?('ul li');
 end
 
 Given(/^I'm an editor with write permission$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/user/homepage'
+  assert locate('authority#level').value == 1;
 end
 
 Then(/^I should see lists of file links, open and edit buttons$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('div.links')
+  assert page.has_content?('open')
+  assert page.has_content?('page 1')
+  assert page.has_css?('button')
+  assert page.has_content?('edit')
 end
 
 When(/^I hit the edit button of a file$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'edit'
 end
 
 Then(/^I should see a new page displaying an edit frame of the file$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('edit')
+  assert page.has_content?('documents')
 end
 
 Then(/^I should see the list of file links with open and edit button$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('div.links')
+  assert page.has_content?('open')
+  assert page.has_content?('page 1')
+  assert page.has_css?('button')
+  assert page.has_content?('edit')
 end
 
 Then(/^I should see a button redirecting to the page showing the user list$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('div.links')
+  assert page.has_content?('user list')
 end
 
 When(/^I'm on the page showing the user list$/) do
-  pending # express the regexp above with the code you wish you had
+  visit 'user/list'
 end
 
 Then(/^I should see the list of user links with open and edit button$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('ul li')
+  assert page.has_content?('user list')
+  assert page.has_css?('a href')
+  assert page.has_css?('button.open')
+  assert page.has_css?('button.edit')
 end
 
 Then(/^I should see a button redirecting the page to the homepage$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button.home')
 end
 
 When(/^I hit the link or the open button of a user$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'open'
 end
 
 Then(/^I should see a new page displaying the information of the user$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('account information')
+  assert page.has_css?('table')
 end
 
 When(/^I hit the edit button of a user$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'edit'
 end
 
 Then(/^I should see a new page displaying an edit frame of the user$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('edit')
+  assert page.has_content?('users')
 end
 
+#------------------------UserLogin.feature starts from here-------------------------------
+
 Given(/^I'm on the login page$/) do
-  pending # express the regexp above with the code you wish you had
+  visit '/login'
 end
 
 When(/^I hit login button with invalid username$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Username', :with => 'Obama'
+  fill_in 'Password', :with => 'iampresident'
+  click_button 'Login'
 end
 
 Then(/^I should see an error message on the page$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('div.field_with_errors')
 end
 
 When(/^I hit login button with wrong password$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Username', :with => 'Hansong'
+  fill_in 'Password', :with => 'hansongpeng'
+  click_button 'Login'
 end
 
 When(/^I hit login button with correct information$/) do
-  pending # express the regexp above with the code you wish you had
+  fill_in 'Username', :with => 'Hansong'
+  fill_in 'Password', :with => 'songhan'
+  click_button 'Login'
 end
 
 Then(/^I should see the page showing the files$/) do
-  pending # express the regexp above with the code you wish you had
+  vist '/homepage'
 end
 
+#---------------------ViewContent.feature starts from here-----------------------
+
 When(/^I'm on the file content page$/) do
-  pending # express the regexp above with the code you wish you had
+  vist '/document\/+d/'
 end
 
 Then(/^I should see the content of a file$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('pdf reader')
+  assert page.has_content?('document')
 end
 
 Then(/^I should see a tag of file status and an edit button$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button.edit')
+  assert page.has_content?('request update?')
+  assert page.has_css?('span.updated')
 end
 
 Given(/^the file is not under modification$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.locate('span.updated').string == '0'
 end
 
 When(/^I hit the edit button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'edit'
 end
 
 Then(/^I should see an editing frame of the file$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('edit')
+  assert page.has_content?('document')
 end
 
 Then(/^I should see a tag of file status$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('request update?')
+  assert page.has_css?('span.updated')
 end
 
 Then(/^I should see a review button and an edit button$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button.review')
+  assert page.has_css?('button.edit')
 end
 
 Then(/^I should see a button redirecting to the user list$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button.back')
+  assert page.has_content?('back to user list')
 end
 
 When(/^I hit the button to the user list$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'back'
 end
 
 Then(/^I should be back to the page of the user list$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('ul li')
+  assert page.has_content?('user list')
+  assert page.has_css?('a href')
+  assert page.has_css?('button.open')
+  assert page.has_css?('button.edit')
 end
 
 Given(/^the file is tagged as modified by an editor$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.locate('span.updated').string == '1'
 end
 
 When(/^I hit review button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'review'
 end
 
 Then(/^I should see a page showing the file content$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('document')
+  assert page.has_content?('pdf')
 end
 
 Then(/^I should see a approve button and a disapprove button$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_css?('button.approve')
+  assert page.has_css?('button.reject')
 end
 
 When(/^I hit approve button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'aprove'
 end
 
 Then(/^the file should be tagged back to not being modified$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.locate('spane.updated').string == '0'
 end
 
 Then(/^the file content should be saved permanently$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('saved successfully.')
 end
 
 When(/^I hit disapprove button$/) do
-  pending # express the regexp above with the code you wish you had
+  click_button 'reject'
 end
 
 Then(/^the file content should roll back to the former version$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.has_content?('original version')
 end
 
 Then(/^the file should be tagged as not being modified$/) do
-  pending # express the regexp above with the code you wish you had
+  assert page.locate('spane.updated').string == '0'
 end
-

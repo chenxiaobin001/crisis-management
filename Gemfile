@@ -45,3 +45,6 @@ group :test do
   gem 'launchy'
 end
 
+gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'bcrypt-ruby', :require => 'bcrypt'
+

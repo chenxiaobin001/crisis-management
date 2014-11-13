@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pennkey: MyString
+  password_hash: MyString
+  password_salt: MyString
+  level: 1
+
+two:
+  pennkey: MyString
+  password_hash: MyString
+  password_salt: MyString
+  level: 1

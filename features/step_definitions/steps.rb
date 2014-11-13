@@ -1,8 +1,8 @@
 #---------------------- EditContent.feature starts from here-------------------
 
 Given(/^I'm a user with write permission$/) do
-  visit '/user/homepage'
-  assert locate('authority#level').value == 1
+  visit '/document/writeable'
+  assert page.has_text?('Writeable user')
 end
 
 When(/^I'm on the page displaying an edit frame of a file$/) do
@@ -55,8 +55,8 @@ Then(/^I should see the file content viewing page$/) do
 end
 
 Given(/^I'm an administrator$/) do
-  visit '/user/homepage'
-  assert locate('authority#level').value == 2
+  visit '/document/admin'
+  assert page.has_text?('Admin user')
 end
 
 Then(/^I should see the file is saved$/) do
@@ -66,8 +66,8 @@ end
 #---------------------- HompageDisplay.feature starts from here-------------------
 
 Given(/^I'm a user with read\-only permission$/) do
-  visit '/user/homepage'
-  assert locate('authority#level').value == 0;
+  visit '/document/readonly'
+  assert page.has_text?('Readonly user')
 end
 
 When(/^I'm on the homepage$/) do
@@ -220,6 +220,50 @@ end
 Then(/^I should see the page showing the files$/) do
   visit '/document'
 end
+
+Given(/^I'm as a readonly user on the login page$/) do
+  visit '/log_in'
+end
+
+When(/^I hit login button with correct readonly user information$/) do
+  fill_in 'pennkey', :with => 'cxb'
+  fill_in 'password', :with => '123'
+  click_button 'Login'
+end
+
+Then(/^I should see the readonly home page showing the files$/) do
+  assert page.has_text?('Readonly user')
+end
+
+Given(/^I'm as a writeable user on the login page$/) do
+  visit '/log_in'
+end
+
+When(/^I hit login button with correct writeable user information$/) do
+  fill_in 'pennkey', :with => 'cxb1'
+  fill_in 'password', :with => '123'
+  click_button 'Login'
+end
+
+Then(/^I should see the writeable home page showing the files$/) do
+  assert page.has_text?('Writeable user')
+end
+
+Given(/^I'm as a admin user on the login page$/) do
+  visit '/log_in'
+end
+
+When(/^I hit login button with correct admin information$/) do
+  fill_in 'pennkey', :with => 'cxb2'
+  fill_in 'password', :with => '123'
+  click_button 'Login'
+end
+
+Then(/^I should see the admin home page showing the files$/) do
+  assert page.has_text?('Admin user')
+end
+
+
 
 #---------------------ViewContent.feature starts from here-----------------------
 

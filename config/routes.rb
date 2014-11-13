@@ -10,7 +10,13 @@ PublicSafety::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   
   match '/document' => 'documents#document'
-  
+
+  get "/document/readonly" => "documents#readonly"
+
+  get "/document/writeable" => "documents#writeable"
+
+  get "/document/admin" => "documents#admin"
+
   resources :users
   resources :sessions
 

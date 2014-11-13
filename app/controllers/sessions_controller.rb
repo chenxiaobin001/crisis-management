@@ -6,7 +6,17 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:pennkey], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to "/document", :notice => "Logged in!"
+      case user.level
+        when 1
+          redirect_to "/document/readonly", :notice => "Logged in!"
+        when 2
+          redirect_to "/document/writeable", :notice => "Logged in!"
+        when 3
+          redirect_to "/document/admin", :notice => "Logged in!"
+        else
+          flash.now.alert = "User with undefined permission!"
+          render "new"
+      end
     else
       flash.now[:alert] = "Invalid pennkey or password"
       render "new"

@@ -190,7 +190,7 @@ end
 #------------------------UserLogin.feature starts from here-------------------------------
 
 Given(/^I'm on the login page$/) do
-  visit '/login'
+  visit '/log_in'
 end
 
 When(/^I hit login button with invalid username$/) do

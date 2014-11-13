@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   attr_accessor :password 
   before_save :encrypt_password
-  attr_accessible :pennkey, :password, :password_confirmation
+  attr_accessible :pennkey, :password, :password_confirmation, :level
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_presence_of :pennkey

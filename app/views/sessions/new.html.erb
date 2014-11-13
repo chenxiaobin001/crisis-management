@@ -2,11 +2,11 @@
 
 <%= form_tag sessions_path do %>
   <p>
-    <%= label_tag :pennkey %><br />
+    <%= label_tag :pennkey, "pennkey"%><br />
     <%= text_field_tag :pennkey, params[:pennkey] %>
   </p>
   <p>
-    <%= label_tag :password %><br />
+    <%= label_tag :password, "password" %><br />
     <%= password_field_tag :password %>
   </p>
   <%= button_to "Login", action: "new" %>

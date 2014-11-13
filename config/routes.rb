@@ -3,7 +3,7 @@ PublicSafety::Application.routes.draw do
 
   root :to => "sessions#new"
 
-  get "log_in", :to => "documents#document", :as => "log_in"
+  get "log_in", :to => "sessions#new", :as => "log_in"
   
   get "log_out" => "sessions#destroy", :as => "log_out"
 

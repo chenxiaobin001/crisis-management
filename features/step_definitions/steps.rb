@@ -194,35 +194,37 @@ Given(/^I'm on the login page$/) do
 end
 
 When(/^I hit login button with invalid username$/) do
-  fill_in 'Username', :with => 'Obama'
-  fill_in 'Password', :with => 'iampresident'
+  fill_in 'pennkey', :with => 'Obama'
+  fill_in 'password', :with => 'iampresident'
   click_button 'Login'
 end
 
 Then(/^I should see an error message on the page$/) do
-  assert page.has_css?('div.field_with_errors')
+  # assert page.has_css?('div')
+  # assert page.has_content?('Invalid pennkey or password')
+  assert page.has_css?('form')
 end
 
 When(/^I hit login button with wrong password$/) do
-  fill_in 'Username', :with => 'Hansong'
-  fill_in 'Password', :with => 'hansongpeng'
+  fill_in 'pennkey', :with => 'hansong'
+  fill_in 'password', :with => 'hansongpeng'
   click_button 'Login'
 end
 
 When(/^I hit login button with correct information$/) do
-  fill_in 'Username', :with => 'Hansong'
-  fill_in 'Password', :with => 'songhan'
+  fill_in 'pennkey', :with => 'hansong'
+  fill_in 'password', :with => '1234'
   click_button 'Login'
 end
 
 Then(/^I should see the page showing the files$/) do
-  vist '/homepage'
+  visit '/document'
 end
 
 #---------------------ViewContent.feature starts from here-----------------------
 
 When(/^I'm on the file content page$/) do
-  vist '/document\/+d/'
+  visit '/document\/+d/'
 end
 
 Then(/^I should see the content of a file$/) do

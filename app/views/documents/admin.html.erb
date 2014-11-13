@@ -4,3 +4,20 @@
   <li><a href="my_pdf_file.pdf">PDF 2</a>   <button> view </button></li>
   <li><a href="my_pdf_file.pdf">PDF 3</a>   <button> view </button></li>
 </ul>
+
+
+<h2>List of current users</h2>
+<table>
+  <tr>
+    <th>name</th>
+    <th>permission</th>
+  </tr>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%=user.pennkey.to_s %></td>
+        <td><%=user.level.to_s %></td>
+      </tr>
+
+    <% end %>
+</table>

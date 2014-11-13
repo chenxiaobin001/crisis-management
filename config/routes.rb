@@ -15,7 +15,7 @@ PublicSafety::Application.routes.draw do
 
   get "/document/writeable" => "documents#writeable"
 
-  get "/document/admin" => "documents#admin"
+  get "/document/admin", to: "documents#admin"
 
   resources :users
   resources :sessions

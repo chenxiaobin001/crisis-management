@@ -232,7 +232,7 @@ When(/^I hit login button with correct readonly user information$/) do
 end
 
 Then(/^I should see the readonly home page showing the files$/) do
-  assert page.has_text?('Readonly user')
+  assert page.has_text?('Readonly user homepage')
 end
 
 Given(/^I'm as a writeable user on the login page$/) do
@@ -246,7 +246,7 @@ When(/^I hit login button with correct writeable user information$/) do
 end
 
 Then(/^I should see the writeable home page showing the files$/) do
-  assert page.has_text?('Writeable user')
+  assert page.has_text?('Writeable user homepage')
 end
 
 Given(/^I'm as a admin user on the login page$/) do
@@ -260,7 +260,7 @@ When(/^I hit login button with correct admin information$/) do
 end
 
 Then(/^I should see the admin home page showing the files$/) do
-  assert page.has_text?('Admin user')
+  assert page.has_text?('Admin user homepage')
 end
 
 

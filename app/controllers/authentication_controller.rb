@@ -14,18 +14,15 @@ class AuthenticationController < ApplicationController
     pennkey = params[:user][:pennkey]
     password = params[:user][:password]
 
-    User.authenticate(username, password)
-      username = username_or_email
-      user = User.authenticate_by_username(username, password)
-    end
+    user = User.authenticate(pennkey, password)
 
     if user
       session[:user_id] = user.id
-      flash[:notice] = 'Welcome.'
+      flash[:notice] = 'Welcome.' + pennkey.to_s
       redirect_to :root
     else
-      flash.now[:error] = 'Unknown user. Please check your username and password.'
-      render :action => "sign_in"
+      flash[:error] = 'Unknown user. Please check your username and password.'
+      redirect_to action: :sign_in
     end
-
+  end
 end

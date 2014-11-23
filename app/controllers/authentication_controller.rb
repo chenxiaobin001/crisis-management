@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
     user = User.authenticate(pennkey, password)
 
     if user
-      session[:user_id] = user.id
+      session[:user_id] = user.pennkey
       flash[:notice] = 'Welcome.' + pennkey.to_s
       redirect_to :root
     else

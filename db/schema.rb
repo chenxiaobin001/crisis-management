@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121064659) do
+ActiveRecord::Schema.define(version: 20141123221937) do
 
   create_table "documents", force: true do |t|
     t.string   "document_name"
@@ -46,9 +46,10 @@ ActiveRecord::Schema.define(version: 20141121064659) do
     t.string   "pennkey"
     t.string   "email"
     t.string   "school"
-    t.integer  "privilege",  default: 0
+    t.integer  "privilege",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_hash"
   end
 
 end

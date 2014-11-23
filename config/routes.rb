@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   root :to => "home#index"
   get "signed_out" => "authentication#signed_out"
   get "sign_in" => "authentication#sign_in"
+  get "sign_up" => "users#new"
 
   post "sign_in" => "authentication#login"
-  post "new_user" => "users#new"
+  post "sign_up" => "users#create"
 
   resources :group_docs
 

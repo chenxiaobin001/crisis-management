@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  def self.authenticate(pennkey, password)
-    user = find_by_email(pennkey)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+  def self.authenticate(pennkey, password="")
+    user = find_by_pennkey(pennkey)
+    if user && BCrypt::Password.new(user.password_hash) == password
       user
     else
       nil
@@ -26,10 +26,7 @@ class User < ActiveRecord::Base
 
 
   def encrypt_password
-    if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
+    self.password_hash = BCrypt::Password.create(password) if password.present?
   end
 
 

@@ -31,6 +31,16 @@
     <%= f.number_field :privilege %>
     <%= show_field_error(@user, :privilege) %>
   </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+    <%= show_field_error(@user, :password) %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.text_field :password_confirmation %>
+    <%= show_field_error(@user, :password_confirmation) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
     <%= f.submit 'Clear Form', :type => 'reset' %>

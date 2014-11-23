@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pennkey: MyString
+  email: MyString
+  school: MyString
+  privilege: 1
+
+two:
+  pennkey: MyString
+  email: MyString
+  school: MyString
+  privilege: 1

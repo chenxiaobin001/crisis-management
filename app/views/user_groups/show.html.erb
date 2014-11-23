@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pennkey:</strong>
+  <%= @user_group.pennkey %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @user_group.group_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_group_path(@user_group) %> |
+<%= link_to 'Back', user_groups_path %>

@@ -4,7 +4,15 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    if !current_user
+      redirect_to root_url
+    else
+      if current_user.privilege == 0 or current_user.privilege == 1
+        @documents = Document.all
+      else
+        @documents = current_user.documents
+      end
+    end
   end
 
   # GET /documents/1

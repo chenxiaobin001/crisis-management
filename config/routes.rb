@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
   resources :groups
 
-  resources :users
+  resources :users do
+    resources :documents
+  end
 
 
 

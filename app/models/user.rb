@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     self.password_hash = BCrypt::Password.create(password) if password.present?
   end
 
-
+  
 
 end
 

@@ -12,7 +12,7 @@
     </div>
     <% @documents.each do |document| %>
       <div class="row">
-        <div class="col-md-8"><a href="#" class="list-group-item"><%= document.document_name %></a></div>
+        <div class="col-md-8"><a href= <%= 'documents/' + document.id.to_s%> class="list-group-item"><%= document.document_name %></a></div>
         <div class="col-md-1"><%= link_to 'Show', document , {class: "btn btn-primary "}%></div>
         <div class="col-md-1"><%= link_to 'Edit', edit_document_path(document), {class: "btn btn-info " }%></div>
         <div class="col-md-1"><%= link_to 'Delete', document, {class: "btn btn-danger ", method: :delete, data: { confirm: 'Are you sure?' }} %></div>

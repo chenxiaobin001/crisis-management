@@ -55,12 +55,8 @@
 
 <body>
 <div class = "container">
-  <!--
-  <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
-  -->
-<%= yield %>
+  <%= render partial: "shared/flash_messages", flash: flash %>
+  <%= yield %>
 
 </div>
 </body>

@@ -1,26 +1,26 @@
-<h1>Listing documents</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Document name</th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listing documents</h3>
+  </div>
+  <div class="panel-body">
+    <p>Listed are the documents you can view</p>
+  </div>
+  <div class="list-group">
+    <div class="row">
+      <div class="col-md-8"><a href="#" class="list-group-item">Document Name</a></div>
+      <div class="col-md-4"><a href="#" class="list-group-item">Action</a></div>
+    </div>
     <% @documents.each do |document| %>
-      <tr>
-        <td><%= document.document_name %></td>
-        <td><%= document.url %></td>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+        <div class="col-md-8"><a href="#" class="list-group-item"><%= document.document_name %></a></div>
+        <div class="col-md-1"><%= link_to 'Show', document , {class: "btn btn-primary active"}%></div>
+        <div class="col-md-1"><%= link_to 'Edit', edit_document_path(document), {class: "btn btn-info active" }%></div>
+        <div class="col-md-1"><%= link_to 'Delete', document, {class: "btn btn-danger ", method: :delete, data: { confirm: 'Are you sure?' }} %></div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+
+</div>
 
 <br>
 

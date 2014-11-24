@@ -18,7 +18,7 @@ class AuthenticationController < ApplicationController
 
     if user
       session[:user_id] = user.pennkey
-  #    flash[:notice] = 'Welcome.' + pennkey.to_s
+      flash[:success] = 'Welcome.' + pennkey.to_s
       redirect_to :root
     else
       flash[:error] = 'Unknown user. Please check your username and password.'

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root :to => "home#index"
+  root :to => "home#homepage"
   get "signed_out" => "authentication#signed_out"
   get "sign_in" => "authentication#sign_in"
   get "sign_up" => "users#new"

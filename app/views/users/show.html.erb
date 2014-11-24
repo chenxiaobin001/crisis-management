@@ -1,0 +1,23 @@
+
+<p>
+  <strong>Pennkey:</strong>
+  <%= @user.pennkey %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @user.school %>
+</p>
+
+<p>
+  <strong>Privilege:</strong>
+  <%= @user.privilege %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', root_url %>

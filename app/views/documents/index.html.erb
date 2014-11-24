@@ -1,2 +1,27 @@
-<h1>Documents#index</h1>
-<p>Find me in app/views/documents/index.html.erb</p>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listing documents</h3>
+  </div>
+  <div class="panel-body">
+    <p>Listed are the documents you can view</p>
+  </div>
+  <div class="list-group">
+    <div class="row">
+      <div class="col-md-8"><a href="#" class="list-group-item">Document Name</a></div>
+      <div class="col-md-4"><a href="#" class="list-group-item">Action</a></div>
+    </div>
+    <% @documents.each do |document| %>
+      <div class="row">
+        <div class="col-md-8"><a href= <%= 'documents/' + document.id.to_s%> class="list-group-item"><%= document.document_name %></a></div>
+        <div class="col-md-1"><%= link_to 'Show', document , {class: "btn btn-primary "}%></div>
+        <div class="col-md-1"><%= link_to 'Edit', edit_document_path(document), {class: "btn btn-info " }%></div>
+        <div class="col-md-1"><%= link_to 'Delete', document, {class: "btn btn-danger ", method: :delete, data: { confirm: 'Are you sure?' }} %></div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<br>
+
+<%= link_to 'New Document', new_document_path %>

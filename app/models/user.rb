@@ -1,32 +1,47 @@
 class User < ActiveRecord::Base
-  
-  attr_accessor :password 
-  before_save :encrypt_password
-  attr_accessible :pennkey, :password, :password_confirmation, :level
-  validates_confirmation_of :password
+
+  has_many :user_groups, :dependent => :destroy
+  has_many :groups, :through => :user_groups
+
+  attr_accessor :password
+  validates :pennkey, presence:true, uniqueness:true, :on => :create
+  validates :email, presence:true, uniqueness:true, :on => :create
   validates_presence_of :password, :on => :create
-  validates_presence_of :pennkey
-  validates_uniqueness_of :pennkey
-  
-  def encrypt_password
-    if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
-  end
-  
-  def self.authenticate(pennkey, password)
+  validates_confirmation_of :password
+
+  before_save :encrypt_password
+
+  def self.authenticate(pennkey, password="")
     user = find_by_pennkey(pennkey)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+    if user && BCrypt::Password.new(user.password_hash) == password
       user
     else
       nil
     end
   end
-  
-  def self.delete(pennkey)
-    user = User.where(pennkey: pennkey).first
-    user.destroy
+
+
+  def encrypt_password
+    self.password_hash = BCrypt::Password.create(password) if password.present?
   end
 
+  # def documents
+    # result_documents = []
+    # self.groups.each do |g|
+      # g.documents.each do |d|
+        # result_documents << d
+      # end
+    # end
+#     
+    # return result_documents.to_s    
+  # end
+  
+  def documents
+    self.groups.each do |g|
+      g.documents
+    end
+  end
+
+
 end
+

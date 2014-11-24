@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_doc.group_id %>
+</p>
+
+<p>
+  <strong>Document:</strong>
+  <%= @group_doc.document_id %>
+</p>
+
+<%= link_to 'Edit', edit_group_doc_path(@group_doc) %> |
+<%= link_to 'Back', group_docs_path %>

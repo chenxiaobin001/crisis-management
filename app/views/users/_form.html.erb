@@ -1,0 +1,48 @@
+<div class = "container">
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <% if current_user %>
+             <% myUrl = @user%>
+          <% else %>
+             <% myUrl = sign_up_path(@user)%>
+          <% end %>
+          <%= bootstrap_form_for @user, :class => "form-signin", url: myUrl do |f| %>
+              <h2 class="form-signin-heading">Please Sign Up</h2>
+              <!--
+              <% if @user.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+                    <ul>
+                      <% @user.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+              -->
+              <%= f.text_field :pennkey, :autofocus=>true, :required=>true%>
+              <%= f.text_field :email, :required=>true%>
+              <%= f.text_field :school, :required=>true%>
+              <%= f.number_field :privilege, :required=>true%>
+              <% if current_user == nil %>
+                <%= f.password_field :password , :required=>true%>
+                <%= f.password_field :password_confirmation , :required=>true%>
+                <%= f.submit "Sign Up", class: "btn btn-primary" %>
+              <% else %>
+                <%= f.submit "Save", class: "btn btn-primary" %>
+              <% end %>
+              <%= f.submit 'Clear Form', :type => 'reset' %>
+          <% end %>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+</div>

@@ -1,30 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
-  <%= stylesheet_link_tag :all %>
-  <!-- <%= javascript_include_tag :defaults %> -->
-  <%= csrf_meta_tag %>
+  <title>PublicSafety</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 </head>
+
+<%=render partial: "shared/navigation_bar"%>
+
 <body>
+<div class = "container">
+  <%= render partial: "shared/flash_messages", flash: flash %>
+  <%= yield %>
 
-
-<% flash.each do |name, msg| %>
-  <!-- <%= content_tag :div, msg, :id => "flash#{name}" %> -->
-  <div class='flash <%= name %>'><%= msg %></div>
-<% end %>
-  
-  
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.pennkey %>
-    <%= link_to "Log out", log_out_path %>
-  <% end %>
 </div>
-
-<%= yield %>
-
-
-
 </body>
 </html>

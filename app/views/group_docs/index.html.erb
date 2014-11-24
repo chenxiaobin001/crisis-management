@@ -1,0 +1,27 @@
+<h1>Listing group_docs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>Document</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_docs.each do |group_doc| %>
+      <tr>
+        <td><%= group_doc.group_id %></td>
+        <td><%= group_doc.document_id %></td>
+        <td><%= link_to 'Show', group_doc %></td>
+        <td><%= link_to 'Edit', edit_group_doc_path(group_doc) %></td>
+        <td><%= link_to 'Destroy', group_doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group doc', new_group_doc_path %>

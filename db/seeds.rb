@@ -6,6 +6,30 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = User.create(:pennkey => "taorui", :password => "123", :level => 1)
-user2 = User.create(:pennkey => "hansong", :password => "123", :level => 2)
-user3 = User.create(:pennkey => "xiaobin", :password => "123", :level => 3)
+
+school_list = ["seas", "wharton", "medical", "law", "art"]
+
+
+0.upto(10) do |index|
+	User.create(
+	  id: index,
+		pennkey: "taorui#{index}", 
+		email: "taorui#{index}@seas.upenn.edu", 
+		privilege: rand(0..2), 
+		password: 123,
+		school: school_list[rand(0..4)]
+		)
+end
+
+0.upto(4) do |index|
+	Group.create(
+		group_name: school_list[index]
+		)
+end
+
+0.upto(10) do |index|
+	Document.create(
+		document_name: "document#{index}",
+		url: "./document#{index}.pdf"
+		)
+end

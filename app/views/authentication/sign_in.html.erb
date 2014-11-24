@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <%= bootstrap_form_for @user, :html => {:class => "form-signin"}, url: sign_in_path(@user) do |f| %>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <%= f.text_field :pennkey, :autofocus=>true, :required=>true%>
+        <%= f.password_field :password , :required=>true%>
+        <%= f.submit "Log In", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+    <div class="col-md-1"></div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<!--
+<%= form_for @user, :as => :user, :html => {:class => "form-horizontal"}, :url => sign_in_path(@user) do |f| %>
+    <p>
+      <%= f.label 'pennkey:' %><br />
+      <%= f.text_field :pennkey %>
+    </p>
+    <p>
+      <%= f.label 'password:' %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.submit 'Sign In' %>&nbsp;&nbsp;&nbsp;
+
+    </p>
+<% end %>
+-->

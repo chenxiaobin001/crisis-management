@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123221937) do
+ActiveRecord::Schema.define(version: 20141121064659) do
 
   create_table "documents", force: true do |t|
     t.string   "document_name"
@@ -20,13 +20,14 @@ ActiveRecord::Schema.define(version: 20141123221937) do
     t.datetime "updated_at"
   end
 
-  create_table "group_docs", force: true do |t|
+  create_table "group_docs", id: false, force: true do |t|
     t.integer  "group_id"
     t.integer  "document_id"
-    t.integer  "group_doc_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "group_docs", ["group_id", "document_id"], name: "index_group_docs_on_group_id_and_document_id"
 
   create_table "groups", force: true do |t|
     t.string   "group_name"
@@ -35,21 +36,22 @@ ActiveRecord::Schema.define(version: 20141123221937) do
   end
 
   create_table "user_groups", id: false, force: true do |t|
-    t.string   "pennkey"
-    t.integer  "group_id"
     t.integer  "user_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", id: false, force: true do |t|
+  add_index "user_groups", ["user_id", "group_id"], name: "index_user_groups_on_user_id_and_group_id"
+
+  create_table "users", force: true do |t|
     t.string   "pennkey"
     t.string   "email"
     t.string   "school"
     t.integer  "privilege",     default: 0
+    t.string   "password_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_hash"
   end
 
 end

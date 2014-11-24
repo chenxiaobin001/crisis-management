@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   
-  self.primary_key = "pennkey"
-  
-  has_many :user_groups, class_name: "UserGroup", foreign_key: "pennkey"
+  has_many :user_groups, :dependent => :destroy
   has_many :groups, :through => :user_groups
 
   attr_accessor :password
@@ -21,8 +19,6 @@ class User < ActiveRecord::Base
       nil
     end
   end
-
-
 
 
   def encrypt_password

@@ -18,7 +18,7 @@ class GroupDoc < ActiveRecord::Base
 #  belongs_to :group, :foreign_key => :group_id
   belongs_to :document
   belongs_to :group
-  self.primary_keys = :user_id, :group_id
+  self.primary_keys = :document_id, :group_id
   validates :group_id, uniqueness: { scope: :document_id}, presence:true
   validates :document_id, uniqueness: { scope: :group_id}, presence:true
   

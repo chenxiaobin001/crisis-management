@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/public_safety-model.iml" filepath="$PROJECT_DIR$/.idea/public_safety-model.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/public_safety.iml" filepath="$PROJECT_DIR$/.idea/public_safety.iml" />
+>>>>>>> 30f376337422c381a48abea51209581d0caa3e59
     </modules>
   </component>
 </project>

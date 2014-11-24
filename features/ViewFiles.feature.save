@@ -1,0 +1,9 @@
+Feature: File Viewing
+
+	As a user
+	so that I can check the safety information
+	I want to view the files
+
+	Scenario: View files as a common user
+		Given I'm a common user with read-only permission
+		https://github.com/cucumber/cucumber-rails/blob/master/README.md

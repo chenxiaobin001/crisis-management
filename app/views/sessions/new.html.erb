@@ -1,0 +1,16 @@
+<h1>Log in</h1>
+
+
+<%= form_tag sessions_path do %>
+
+  <p>
+    <%= label_tag :pennkey, "pennkey"%><br />
+    <%= text_field_tag :pennkey, params[:pennkey] %>
+  </p>
+  <p>
+    <%= label_tag :password, "password" %><br />
+    <%= password_field_tag :password %>
+  </p>
+  <%= button_to "Login", action: "new" %>
+
+<% end %>

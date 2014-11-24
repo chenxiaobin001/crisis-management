@@ -1,0 +1,30 @@
+Feature: Website content displayed as lists on user homepage
+
+	As a user
+	so that I can check the safety information
+	I want to view the list of files and/or the list of users
+
+	Scenario: View file list as a common user
+		Given I'm a user with read-only permission
+		When I'm on the homepage
+		Then I should see the list of file links with open buttons
+		When I hit the link or the open button of a file
+		Then I should see the page showing the content of the file
+
+	Scenario: View file list as an editor
+		Given I'm an editor with write permission
+		When I'm on the homepage
+		Then I should see the list of file links with open and edit button
+Distributional methods for word similarity
+
+	Scenario: View file list as an administrator
+		Given I'm an administrator
+		When I'm on the homepage
+		Then I should see the list of file links with open and edit button
+		And I should see a button redirecting the page showing the user list
+
+	Scenario: View User list as an administrator
+		Given I'm an administrator
+		When I'm on the page showing the user list
+		Then I should see the list of user links with open and edit button
+		And I should see a button redirecting the page to the homepage

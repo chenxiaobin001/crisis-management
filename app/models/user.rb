@@ -25,7 +25,25 @@ class User < ActiveRecord::Base
     self.password_hash = BCrypt::Password.create(password) if password.present?
   end
 
-  
+
+  def documents
+     result_documents = []
+     self.groups.each do |g|
+       g.documents.each do |d|
+         result_documents << d
+       end
+     end
+     return result_documents.to_set
+  end
+=begin
+
+  def documents
+    self.groups.each do |g|
+      g.documents
+    end
+  end
+=end
+
 
 end
 

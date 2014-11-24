@@ -12,9 +12,11 @@ school_list = ["seas", "wharton", "medical", "law", "art"]
 
 0.upto(10) do |index|
 	User.create(
+	  id: index,
 		pennkey: "taorui#{index}", 
 		email: "taorui#{index}@seas.upenn.edu", 
 		privilege: rand(0..2), 
+		password: 123,
 		school: school_list[rand(0..4)]
 		)
 end

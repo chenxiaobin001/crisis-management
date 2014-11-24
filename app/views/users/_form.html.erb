@@ -1,3 +1,4 @@
+<div class = "container">
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -46,3 +47,4 @@
     <%= f.submit 'Clear Form', :type => 'reset' %>
   </div>
 <% end %>
+</div>

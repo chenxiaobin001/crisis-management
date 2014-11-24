@@ -70,6 +70,6 @@ class UserGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_group_params
-      params.require(:user_group).permit(:pennkey, :group_id)
+      params.require(:user_group).permit(:user_id, :group_id)
     end
 end

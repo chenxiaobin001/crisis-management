@@ -1,6 +1,6 @@
 class UserGroupValidator < ActiveModel::Validator
   def validate(record)
-    if User.where("user_id = '#{record.user_id}'").size == 0
+    if User.where("id = '#{record.user_id}'").size == 0
       record.errors[:base] << "No such a record."
     end
     if Group.where("id = '#{record.group_id}'").size == 0

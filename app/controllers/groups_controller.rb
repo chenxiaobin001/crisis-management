@@ -11,6 +11,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @all_documents = Document.all
+    @group_documents = Group.find_by_id(params[:id]).documents
   end
 
   # GET /groups/new

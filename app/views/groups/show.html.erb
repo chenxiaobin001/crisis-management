@@ -1,13 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center"><h3>Pick List Example</h3></div>
+    <div class="col-md-12 text-center"><h3>Change Group Documents</h3></div>
     <div class="col-sm-4 col-sm-offset-1">
       <div class="list-group" id="list1">
-        <a href="#" class="list-group-item active">List 1 <input title="toggle all" type="checkbox" class="all pull-right"></a>
-        <a href="#" class="list-group-item">Second item <input type="checkbox" class="pull-right"></a>
-        <a href="#" class="list-group-item">Third item <input type="checkbox" class="pull-right"></a>
-        <a href="#" class="list-group-item">More item <input type="checkbox" class="pull-right"></a>
-        <a href="#" class="list-group-item">Another <input type="checkbox" class="pull-right"></a>
+        <a href="#" class="list-group-item active">All Documents <input title="toggle all" type="checkbox" class="all pull-right"></a>
+        <% @all_documents.each do |document| %>
+            <a href= "#" class="list-group-item"><%= document.document_name %><input type="checkbox" class="pull-right"></a>
+        <% end %>
       </div>
     </div>
     <div class="col-md-2 v-center">
@@ -16,11 +15,75 @@
     </div>
     <div class="col-sm-4">
       <div class="list-group" id="list2">
-        <a href="#" class="list-group-item active">List 2 <input title="toggle all" type="checkbox" class="all pull-right"></a>
-        <a href="#" class="list-group-item">Alpha <input type="checkbox" class="pull-right"></a>
-        <a href="#" class="list-group-item">Charlie <input type="checkbox" class="pull-right"></a>
-        <a href="#" class="list-group-item">Bravo <input type="checkbox" class="pull-right"></a>
+        <a href="#" class="list-group-item active">Current Documents<input title="toggle all" type="checkbox" class="all pull-right"></a>
+        <% @group_documents.each do |document| %>
+            <a href= "#" class="list-group-item"><%=document.document_name %> <input type="checkbox" class="pull-right"></a>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    $('.add').click(function(){
+        $('.all').prop("checked",false);
+        var items = $("#list1 input:checked:not('.all')");
+        var n = items.length;
+        if (n > 0) {
+            items.each(function(idx,item){
+                var choice = $(item);
+                choice.prop("checked",false);
+                choice.parent().appendTo("#list2");
+            });
+        }
+        else {
+            alert("Choose an item from list 1");
+        }
+    });
+
+    $('.remove').click(function(){
+        $('.all').prop("checked",false);
+        var items = $("#list2 input:checked:not('.all')");
+        items.each(function(idx,item){
+            var choice = $(item);
+            choice.prop("checked",false);
+            choice.parent().appendTo("#list1");
+        });
+    });
+
+    /* toggle all checkboxes in group */
+    $('.all').click(function(e){
+        e.stopPropagation();
+        var $this = $(this);
+        if($this.is(":checked")) {
+            $this.parents('.list-group').find("[type=checkbox]").prop("checked",true);
+        }
+        else {
+            $this.parents('.list-group').find("[type=checkbox]").prop("checked",false);
+            $this.prop("checked",false);
+        }
+    });
+
+    $('[type=checkbox]').click(function(e){
+        e.stopPropagation();
+    });
+
+    /* toggle checkbox when list group item is clicked */
+    $('.list-group a').click(function(e){
+
+        e.stopPropagation();
+
+        var $this = $(this).find("[type=checkbox]");
+        if($this.is(":checked")) {
+            $this.prop("checked",false);
+        }
+        else {
+            $this.prop("checked",true);
+        }
+
+        if ($this.hasClass("all")) {
+            $this.trigger('click');
+        }
+    });
+</script>
+

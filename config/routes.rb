@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   post "sign_in" => "authentication#login"
   post "sign_up" => "users#create"
-
+  
+  
   resources :group_docs
 
   resources :documents

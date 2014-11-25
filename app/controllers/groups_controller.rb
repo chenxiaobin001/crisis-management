@@ -3,6 +3,14 @@ class GroupsController < ApplicationController
   before_filter :check_privileges!
   # GET /groups
   # GET /groups.json
+
+  def add_delete_documents
+    document_ids = params[:document_ids].split(',')
+    group = Group.find_by_id(params[:group_id])
+    group.changeAccessibleDocs(document_ids)
+    redirect_to group_documents_path(group)
+  end
+
   def index
     @groups = Group.all
     @group_docs = get_all_docs
@@ -13,6 +21,7 @@ class GroupsController < ApplicationController
   def show
     @all_documents = Document.all
     @group_documents = Group.find_by_id(params[:id]).documents
+    @group = Group.find_by_id(params[:id])
   end
 
   # GET /groups/new

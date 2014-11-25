@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "sign_up" => "users#new"
   get "users/:user_id/documents" => "documents#show_documents_of_user"
   get "groups/:group_id/documents" => "documents#show_documents_in_group"
-
+  get "addOrDeleteDocuments" => "groups#add_delete_documents"
   post "sign_in" => "authentication#login"
   post "sign_up" => "users#create"
 
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :user_groups
 
   resources :groups do
-    resources :documents , only: [:index, :show]
+    resources :documents , only: [:index, :show, :update]
   end
 
   resources :users do

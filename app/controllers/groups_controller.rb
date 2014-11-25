@@ -5,6 +5,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
+    @group_docs = get_all_docs
   end
 
   # GET /groups/1
@@ -72,4 +73,14 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:group_name)
     end
+
+    def get_all_docs
+      groups = Group.all
+      result_documents = { }
+      groups.each do |group|
+        result_documents[group.id] = group.documents
+      end
+      return result_documents
+    end
+
 end

@@ -14,8 +14,8 @@ class Document < ActiveRecord::Base
         result_users << u
       end
     end
-    return result_users.to_set
+    return result_users.to_s
+    
   end
-  
 
 end

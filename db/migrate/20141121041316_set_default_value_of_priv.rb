@@ -1,7 +1,7 @@
 class SetDefaultValueOfPriv < ActiveRecord::Migration
   
   def self.up
-    change_column :users, :privilege, :integer, default: 3
+    change_column :users, :privilege, :integer, default: 0
   end
 
   def self.down

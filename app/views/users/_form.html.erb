@@ -6,13 +6,13 @@
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-          <% if current_user %>
+          <% if current_user%>
              <% myUrl = @user%>
           <% else %>
              <% myUrl = sign_up_path(@user)%>
           <% end %>
           <%= bootstrap_form_for @user, :class => "form-signin", url: myUrl do |f| %>
-              <h2 class="form-signin-heading">Please Sign Up</h2>
+              <h2 class="form-signin-heading">User Info</h2>
               <!--
               <% if @user.errors.any? %>
                   <div id="error_explanation">
@@ -25,26 +25,32 @@
                   </div>
               <% end %>
               -->
-              <%= f.text_field :pennkey, :autofocus=>true, :required=>true%>
-              <%= f.text_field :email, :required=>true%>
-              <%= f.text_field :school, :required=>true%>
-              <!--
-              <%= f.number_field :privilege, :required=>true%>
-              -->
               <% if current_user == nil %>
+                <%= f.text_field :pennkey,:autofocus=>true,:required=>true%>
+                <%= f.text_field :email, :required=>true%>
+                <%= f.text_field :school, :required=>true%>
+                <%= f.number_field :privilege, in: 0..3, :required=>true%>
                 <%= f.password_field :password , :required=>true%>
                 <%= f.password_field :password_confirmation , :required=>true%>
                 <%= f.submit "Sign Up", class: "btn btn-primary" %>
+                <%= f.submit 'Clear Form', :type => 'reset' %>
               <% else %>
+                <%= f.text_field :pennkey, :required=>true, :disabled=>true%>
+                <%= f.text_field :email, :required=>true, :disabled=>true%>
+                <%= f.text_field :school, :required=>true, :disabled=>true%>
+                <%= f.number_field :privilege, in: 0..3, :autofocus=>true, :required=>true%>
                 <%= f.submit "Save", class: "btn btn-primary" %>
+                <%= link_to 'privilege mapping', '#', {class: "btn btn-info ", data: {toggle: "modal", target: "#myModal"} } %>
               <% end %>
-              <%= f.submit 'Clear Form', :type => 'reset' %>
+
           <% end %>
         </div>
         <div class="col-md-1"></div>
       </div>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    </div>
   </div>
 
 </div>
+<!--      <td><%= link_to 'privilege', '#', {class: "btn btn-info ", data: {toggle: "modal", target: "#myModal"} } %></td>

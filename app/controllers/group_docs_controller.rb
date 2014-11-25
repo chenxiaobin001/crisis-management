@@ -1,6 +1,7 @@
 class GroupDocsController < ApplicationController
   before_action :set_group_doc, only: [:show, :edit, :update, :destroy]
 
+  before_filter :check_privileges!
   # GET /group_docs
   # GET /group_docs.json
   def index

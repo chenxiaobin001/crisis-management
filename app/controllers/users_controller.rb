@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_privileges!, only: [:new, :create, :edit, :destroy, :update, :index]
+
 
   # GET /users
   # GET /users.json

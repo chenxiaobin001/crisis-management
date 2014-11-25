@@ -24,10 +24,52 @@
         <td><%= user.school %></td>
         <td><%= user.privilege %></td>
         <td><%= link_to 'documents', user, {class: "btn btn-primary " } %></td>
-        <td><%= link_to 'privilege', user, {class: "btn btn-info " } %></td>
+  <!--      <td><%= link_to 'privilege', '#', {class: "btn btn-info ", data: {toggle: "modal", target: "#myModal"} } %></td>  -->
+        <td><%= link_to 'privilege', edit_user_path(user), {class: "btn btn-info "}  %>
         <td><%= link_to 'delete', user, {class: "btn btn-danger ", method: :delete, data: { confirm: 'Are you sure?' }} %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Change Privilege</h4>
+      </div>
+      <div class="modal-body">
+        <div class="radio">
+          <label>
+            <input type="radio" name="user[privilege]" id="optionsRadios1" value="0" checked>
+             0 - Full Admin
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="user[privilege]" id="optionsRadios2" value="1">
+             1 - Admin
+          </label>
+        </div>
+        <div class="radio ">
+          <label>
+            <input type="radio" name="user[privilege]" id="optionsRadios3" value="2" >
+             2 - Writeable User
+          </label>
+        </div>
+        <div class="radio ">
+          <label>
+            <input type="radio" name="user[privilege]" id="optionsRadios4" value="3" >
+             3 - Readable User
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

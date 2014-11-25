@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
+  before_filter :check_privileges!, only: [:new, :create, :destroy]
   # GET /documents
   # GET /documents.json
   def index

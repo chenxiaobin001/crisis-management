@@ -1,5 +1,50 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', root_url %>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Privilege Mapping</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+
+          <!-- Table -->
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Privilege</th>
+            </tr>
+            <tbody>
+            <tr>
+              <td>0</td>
+              <td>Full Admin</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Admin</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Writeable User</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Readable User</td>
+            </tr>
+            </tbody>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

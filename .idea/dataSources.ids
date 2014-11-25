@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-<<<<<<< HEAD
   <data-source source="LOCAL" name="Rails public_safety-model: development" uuid="d0e16548-5aa6-40c0-9196-23042c3843a5">
-=======
-  <data-source source="LOCAL" name="Rails public_safety: development" uuid="3736ba97-b987-430f-b5a0-57b5252ddc19">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails public_safety: test" uuid="60dbc01b-54bc-44c1-b6dd-ec8f774067f6">
+  <data-source source="LOCAL" name="Rails public_safety-model: test" uuid="06c8da93-637b-4b58-997c-5bf15fd52d58">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails public_safety: cucumber" uuid="ef25ae3f-6450-46df-bf9a-aa2cbd1bff83">
->>>>>>> 30f376337422c381a48abea51209581d0caa3e59
+  <data-source source="LOCAL" name="Rails public_safety-model: production" uuid="b95b721e-b7f8-48d4-b02a-83c0fef5faa4">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails public_safety-model: cucumber" uuid="afb65acb-4b9d-46a2-ae3b-e66031187bca">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

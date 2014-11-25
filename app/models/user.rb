@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   
   validates_inclusion_of :privilege, :in => [0,1,2,3]
-  validates_inclustion_of :school, :in => [nil, 'seas', 'medical', 'law', 'wharton', 'art']
+  validates_inclusion_of :school, :in => [nil, 'seas', 'medical', 'law', 'wharton', 'art']
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   before_save :encrypt_password

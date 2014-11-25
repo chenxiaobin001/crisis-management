@@ -8,4 +8,33 @@ class Group < ActiveRecord::Base
 
   validates :group_name, uniqueness: true, presence:true
   
+  
+  def changeAccessibleDocs(doc_ids)
+    
+    GroupDoc.where(group_id:self.id).each do |gd|
+      gd.destroy
+    end
+    
+    doc_ids.each do |di|
+      GroupDoc.create(group_id:self.id, document_id:di)
+    end
+    
+  end
+  
+  def changeUsers(user_ids)
+    
+    UserGroup.where(group_id:self.id).each do |ug|
+      ug.destroy
+    end
+    
+    user_ids.each do |ui|
+      UserGroup.create(group_id:self.id, user_id:ui)
+    end
+    
+  end
+  
+  
+  
+  
+  
 end

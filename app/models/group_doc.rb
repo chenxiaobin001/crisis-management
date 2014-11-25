@@ -23,5 +23,6 @@ class GroupDoc < ActiveRecord::Base
   validates :document_id, uniqueness: { scope: :group_id}, presence:true
   
   validates_with GroupDocValidator
-    
+  
+
 end

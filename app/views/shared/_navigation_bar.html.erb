@@ -31,7 +31,7 @@
         <% else%>
             <% if current_user.privilege == 0 or current_user.privilege == 1%>
               <li><a class="navbar-brand" href= <%= users_url %>>Users</a></li>
-              <li><a class="navbar-brand" href= <%= groups_url %>>UserGroups</a></li>
+              <li><a class="navbar-brand" href= <%= groups_url %>>Groups</a></li>
             <% else %>
           <!--    <li><a class="navbar-brand" href= #>Link</a></li>  -->
             <% end %>
@@ -41,7 +41,7 @@
                 <li><a href= <%= user_path(current_user)%>>Profile</a></li>
                 <li><a href="#">Contact Admin</a></li>
                 <li class="divider"></li>
-                <li><a href="signed_out">Sign out</a></li>
+                <li><a href="/signed_out">Sign out</a></li>
               </ul>
             </li>
         <% end %>

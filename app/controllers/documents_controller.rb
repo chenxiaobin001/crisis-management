@@ -4,16 +4,30 @@ class DocumentsController < ApplicationController
   before_filter :check_privileges!, only: [:new, :create, :destroy]
   # GET /documents
   # GET /documents.json
-  def index
+  def show_documents_in_group
+    group = Group.find_by_id(params[:group_id])
+    @documents = group.documents
+    @tag = 1
+    render :index
+  end
+
+  def show_documents_of_user
     if !current_user
       redirect_to root_url
     else
-      if current_user.privilege == 0 or current_user.privilege == 1
+      @tag = 2
+      if is_admin?
         @documents = Document.all
       else
         @documents = current_user.documents
       end
+      render :index
     end
+
+  end
+
+  def index
+
   end
 
   # GET /documents/1

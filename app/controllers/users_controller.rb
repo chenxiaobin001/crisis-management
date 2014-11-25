@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_privileges!, only: [:new, :create, :edit, :destroy, :update, :index]
+  before_action :check_privileges!, only: [:edit, :destroy, :update, :index]
 
 
   # GET /users
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @user.privilege = 3
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.pennkey
@@ -72,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:pennkey, :email, :school, :privilege, :password, :password_confirmation)
+      params.require(:user).permit(:pennkey, :email, :school, :password, :password_confirmation)
     end
 end

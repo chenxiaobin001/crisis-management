@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "signed_out" => "authentication#signed_out"
   get "sign_in" => "authentication#sign_in"
   get "sign_up" => "users#new"
+  get "users/:user_id/documents" => "documents#show_documents_of_user"
+  get "groups/:group_id/documents" => "documents#show_documents_in_group"
 
   post "sign_in" => "authentication#login"
   post "sign_up" => "users#create"
@@ -16,10 +18,12 @@ Rails.application.routes.draw do
 
   resources :user_groups
 
-  resources :groups
+  resources :groups do
+    resources :documents , only: [:index, :show]
+  end
 
   resources :users do
-    resources :documents
+    resources :documents, only: [:index, :show]
   end
 
 
